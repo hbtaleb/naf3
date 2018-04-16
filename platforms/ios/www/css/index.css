@@ -1,0 +1,77 @@
+  .cardstyle {
+	    font-size: 13px;
+	    cursor: pointer;
+        color: #333;
+      }
+
+.greanblue{
+	color: #85adad
+}
+.green{
+	color:#00bdb5
+}
+.white{
+	color: white;
+}
+.materialcolor{
+	background-color:#00bdb5
+}
+.b-red
+{
+	background-color:Tomato
+}
+.size1{
+	font-size: 9px;
+}
+.size2{
+	font-size: 17px;
+}
+
+.justify{
+	text-align: justify;
+}
+
+.location {
+  font-size: 14px;
+  opacity: 0.4;
+  margin-bottom: 6px;
+}
+
+.cover-label {
+	
+  text-align: center;
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  bottom: 10px;
+  
+  
+}
+.img-color{
+	color: #85adad
+}
+#account-page #ads-page .page__background
+{
+	background-color: #f2f2f2
+	
+}
+
+.center{
+	text-align:center;
+}
+.direction{
+	 text-align: right;
+}
+
+.padding1{
+	padding:30px;
+}
+.rad-img{
+border-radius: 500px;
+width: 100px; 
+height: 100px;	
+}
+.right-align
+{
+	text-align:right
+}

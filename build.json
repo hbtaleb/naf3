@@ -1,0 +1,13 @@
+{
+"android": {
+
+"release": {
+"keystore": "app-key.keystore",
+"storepassword": "ejjar2018",
+"alias": "app-key",
+"password": "ejjar2018",
+"keystoretype": ""
+
+}
+}
+}

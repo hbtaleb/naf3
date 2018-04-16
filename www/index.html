@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+		<meta http-equiv="Content-Security-Policy"  />
+		<link rel="stylesheet" href="css/index.css">
+	
+		<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+        <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+       
+
+		<script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+	
+		 <!--  jQuery -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <title>بادلني</title>
+     </head>
+       <body >
+
+
+<style>
+	
+@font-face{font-family:'sukar';
+src:url('css/Sukar-Regular.woff') format('woff');}
+	
+.sukar{font-family: 'sukar';}
+
+.bk{
+	background-color:#300353  
+}
+.bk2{
+	background-color:#C70039  
+}
+.c{
+		color:#D5DF73 
+	}
+	.main{
+		color: #300353
+	}
+.lemon{
+	background-color: #D5DF73  ;	
+	}
+.white{
+color:white;
+}
+.center{
+		text-align: center
+	}
+.hidden {
+    display: none;
+}
+
+.accordion {
+    transition: 0.2s;
+}
+
+
+.accordion:before {
+    margin-top: -3px;
+	font-size: 40px;
+	color:#300353;
+	font-family: "Material Icons";
+    content: "\e147";
+
+}
+
+.accordion.active:before {
+     font-family: "Material Icons";
+     content: '\e15c';
+}
+
+div.panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+    opacity: 0;
+}
+
+div.panel.show {
+    opacity: 1;
+    max-height: 500px;
+}
+
+.list__item__center {
+    padding-left: 5px;
+}
+</style>
+   
+<ons-navigator swipeable="force" swipe-target-width="40px" swipeable id="myNavigator" page="page1.html"></ons-navigator>
+
+<template id="page1.html">
+  <ons-page id="page1">
+    <ons-toolbar modifier=" aligned" class="lemon">
+      <div class="right sukar" >
+		<img src="img/logo.png" alt="logo" width="80px" height="50px">
+		</div>
+    </ons-toolbar>
+	<ons-bottom-toolbar style="height:65px" modifier="transparent aligned">
+        <div id="tool" class="toolbar__center">
+		<button  class="fab fab--material bk" onClick="window.plugins.socialsharing.share('تطبيق نفع, حاجاتك يُنتفعُ بها ..')"><i class="zmdi zmdi-share white"></i></button>&nbsp;&nbsp;
+		<button  class="fab fab--material bk" onMouseUp="document.querySelector('#myNavigator').pushPage('info.html'); 
+             "><i class="zmdi zmdi-info white"></i></button>&nbsp;&nbsp;
+        <button  class="fab fab--material bk"  onMouseUp="logmsg('add')"><i class="zmdi zmdi-plus white"></i></button>&nbsp;&nbsp;
+		<button  class="fab fab--material bk"  onMouseUp="logmsg('log')" ><i class="zmdi zmdi-account white"></i></button>&nbsp;&nbsp;
+        </div>
+    </ons-bottom-toolbar>
+
+	   <ons-pull-hook class="sukar" id="pull-hook">
+   اعادة تحميل 
+  </ons-pull-hook>
+	  
+
+  
+	  <ons-list style="direction:rtl" id="ads-list">
+  
+
+    </ons-list>
+	  
+	  
+  </ons-page>
+</template>
+		   
+
+<ons-dialog dir="rtl" class="sukar" id="dialog-1"  cancelable>
+   <ons-toolbar modifier="material" class="lemon">
+      <div class="center sukar">
+        تسجيل الدخول
+      </div>
+    </ons-toolbar><br><br><br><ons-progress-bar id="load1" class="hidden" modifier="material" indeterminate></ons-progress-bar>
+	  <div  style="text-align: center; margin-top: 30px;">
+		   
+	     <input name="phone2"  style="width:80%" class="text-input text-input--material sukar " type="tel" maxLength="9"      placeholder="رقم الجوال"><br><br>
+		    <input name="password2" style="width:80%" class="text-input text-input--material sukar " type="password" placeholder="كلمة المرور"><br><br>
+		  <button class="button sukar bk" onClick="login()" >دخول</button><br><br><br>
+		  <small onClick="logmsg2()" class="sukar" style=" color:indianred;"> تسجيل جديد ></small><br><br>
+	 </div>
+
+</ons-dialog>
+	
+<ons-dialog dir="rtl" class="sukar" id="dialog-2"  cancelable>
+   <ons-toolbar modifier="material" class="lemon">
+      <div class="center sukar">
+       تسجيل جديد
+      </div>
+    </ons-toolbar><br><br><br><ons-progress-bar id="load2" class="hidden"  modifier="material" indeterminate></ons-progress-bar>
+	  <div  style="text-align: center; margin-top: 30px;">
+		   <input name="name1" style="width:80%" class="text-input text-input--material sukar " type="text" placeholder="الاسم"><br><br>
+	     <input name="phone1"  style="width:80%" class="text-input text-input--material sukar " type="tel" maxLength="9"      placeholder="رقم الجوال مثال: 59943.. "><br><br>
+		    <input name="password1" style="width:80%" class="text-input text-input--material sukar " type="password" placeholder="كلمة المرور"><br><br>
+		  <button class="button sukar bk" onClick="register()">تسجيل</button><br><br><br>
+		    <small onClick="logmsg()" class="sukar" style=" color:indianred;"> < تسجيل الدخول  </small><br><br>
+	 </div>
+
+</ons-dialog>
+
+
+
+
+				
+<template id="add.html">
+  <ons-page id="add">
+    <ons-toolbar style="background-color:#D5DF73" >
+       <div class="left sukar"><ons-back-button >رجوع</ons-back-button></div>
+      <div class="center sukar">اضافة اعلان</div>
+    </ons-toolbar>
+
+	   <ons-bottom-toolbar transparent>
+      <button style="height: 100%; width:100%" class="toolbar-button  sukar c bk" onclick="step1()"> 
+		   التالي    </button>
+   </ons-bottom-toolbar>
+	  
+	  	  <div dir="rtl" style="text-align: center; margin-top: 30px;">
+			
+		 <br>  <input name="title" style="width:90%" class="text-input text-input--material sukar  " type="text" placeholder="عنوان الاعلان"><br><br><br><br>
+	  
+					  
+			  <button onClick="uploadimage(this)" id="1" style="background-color: #DCDCDC;  width:90%; height:200px;background-size: 230px 200px; background-repeat: no-repeat;" class="button--cta"><span class="ion-plus-round sukar main">اضف صورة</span></button><br><br>
+			  
+	 </div>
+    
+  </ons-page>
+</template>				
+			
+				
+<template id="add2.html">
+  <ons-page id="add2">
+    <ons-toolbar style="background-color:#D5DF73" >
+            <div class="left sukar"><ons-back-button >رجوع</ons-back-button></div>
+
+      <div class="center sukar"> اكمال الخطوة الأخيرة</div>
+    </ons-toolbar>
+
+	   <ons-bottom-toolbar transparent>
+      <button style="height: 100%; width:100%" class="toolbar-button  sukar c bk" onclick="step2()"> 
+		   نشر الإعلان    </button>
+   </ons-bottom-toolbar>
+	  
+	  	  <div dir="rtl" style="text-align: center; margin-top: 30px;">
+				  
+		 <br>  <input name="city" style="width:90%" class="text-input text-input--material sukar  " type="text"
+				  placeholder="ادخل اسم مدينتك"><br><br>
+			
+			  	<p><textarea class="textarea sukar" id="detail"
+		
+	 rows="7" style="width:90%" placeholder="تفاصيل أكثر عن إعلانك ... وسيلة تواصل أخرى .."></textarea></p>
+			 
+	  
+			    
+			<label class="checkbox checkbox--material sukar">
+         <input  type="checkbox" name="display" value="yes" class="checkbox__input checkbox--material__input">
+         <div  class="checkbox__checkmark checkbox--material__checkmark "></div>
+           هل تريد ظهور رقم جوالك للتواصل معك ؟
+			  </label><br>
+		
+			  
+	 </div>
+    
+  </ons-page>
+</template>
+	
+
+	
+	
+<template id="ads.html">
+  <ons-page id="ads">
+    <ons-toolbar style="background-color:#D5DF73" >
+       <div class="left sukar"><ons-back-button >رجوع</ons-back-button></div>
+      <div class="center sukar">معلومات الاعلان</div>
+    </ons-toolbar>
+
+	 
+	  
+	  	  <div id="cont" dir="rtl" class="justify" sukar style="text-align: right; margin: 30px 30px 30px 30px;">
+			
+		 
+	      </div><br><br>
+	    <ons-fab id="fab" class="bk c" position="bottom right">
+    <ons-icon icon="ion-social-whatsapp"></ons-icon>
+  </ons-fab>
+
+    
+  </ons-page>
+</template>				
+				
+<template id="info.html">
+  <ons-page id="info">
+    <ons-toolbar style="background-color:#D5DF73" >
+       <div class="left sukar"><ons-back-button >رجوع</ons-back-button></div>
+      <div class="center sukar">عن التطبيق </div>
+    </ons-toolbar>
+
+	 
+		  	  <div dir="rtl" class="justify sukar"  style="text-align: right; margin: 50px 20px 30px 20px;">
+
+		 تطبيق نَفع لمشاركة حاجياتك الغير مستخدمة ليستفيد منها غيرك. 
+		  <br><br>
+		  <b> ماهي آلية التطبيق؟</b>
+		  <br>
+		  <ul class="justify">
+	          <li>
+			  		  بعد تسجيل الدخول يُسمح للمستخدمين بنشر منفعة عبر الإعلان عنها من خلال التطبيق
+
+			  </li><br>
+			  
+			  <li>
+			        يُسمح للزّوار بتصفح جميع الإعلانات والتواصل مع صاحب المنفعة مباشرة للحصول عليها
+			  
+			  </li><br>
+			  
+			  <li>
+			  للمستخدم الصلاحية في الكشف عن اعلاناته والحذف  في حال تم تسليمها للشخص المستفيد
+			  </li>
+	        </ul> <br><br>
+				 <center> 
+					 <img src="img/logo2.png" width="50%" height="20%" alt="logo">
+				  </center> 
+	  </div>
+    
+  </ons-page>
+</template>				
+				
+	
+	
+<script type="text/javascript" src="cordova.js"></script>
+ <script>
+	 //..vars....
+	window.fn = {};
+	window.fn.toggle = function(el) {
+    el.classList.toggle("active");
+    el.nextElementSibling.classList.toggle("show");
+}
+	  var global = "";
+	  var storage = window.localStorage;
+	  var imgbool = false;
+      var imageuploadbool = false;
+      var dimage = "";
+	  var image ="";
+	 
+	 
+	 function logmsg(str)
+	 {
+		
+		 if (storage.getItem('id') === null)
+			 {
+				 //show login form
+		 $('#dialog-2').hide();
+		 $('#dialog-1').show(); 
+			 }
+		 else if(str == "add")
+			 	 document.querySelector('#myNavigator').pushPage('add.html'); 
+			 else
+			 document.querySelector('#myNavigator').pushPage('account.html'); 
+		
+	 }
+	  function logmsg2()
+	 {
+		 
+		 //show login form
+		 $('#dialog-1').hide();
+		 $('#dialog-2').show();
+	 }
+	 function logout()
+	 {
+		 storage.clear();
+         window.location.href='index.html';
+	 }
+	  function login()
+	 {
+		
+		var phone = $.trim($('input[name=phone2]').val());
+		var password = $.trim($('input[name=password2]').val());
+			
+		
+		if(phone ==""){message("الرجاء إدخال رقم الجوال");return;}
+		if(password == "" ){ message("الرجاء إدخال كلمة مرور"); return;}
+		
+		 ///good...........register........
+		
+		 $.ajax({
+		type: 'POST', 
+		url: 'http://carent.co.nf/login.php',
+		Type: 'json',
+	
+		 	data: { phone: phone, password:password 
+				   }, 
+		    beforeSend: function() {
+            $("#load1").attr("style", "display:block");
+	
+                },
+        complete: function(){
+                  $("#load1").attr("style", "display:none");
+                },
+		success: function(response){
+	
+		if(response.msg == 'yes'){
+	
+			$('#dialog-1').hide();
+			$('#page1').append("<div class='toast bk' id='toast1'>  <div class='toast__message sukar c center'>"+
+										 "  تم تسجيلك بنجاح .. </div> </div>")	
+
+        setTimeout("$('#toast1').remove(); document.querySelector('#myNavigator').resetToPage( 'page1.html', {'title': ''}, 'slide-ios') ;", 800);
+        storage.setItem('name',response.name);
+        storage.setItem('phone',response.phone);
+		storage.setItem('id',response.id);
+		
+	
+			
+		//myNav.resetToPage( 'index.html', {'title': ''}, 'slide-ios') ;
+		}
+		else
+	   message("لم تم تسجيل الدخول بنجاح.. الرجاء التحقق من الجوال وكلمة المرور");
+
+		
+		} //End success function
+		
+		 , error: function(errors) {
+		message("عذرا حصل خطأ, الرجاء التأكد من اتصالك بالانترنت");
+		}
+		}); //End AJAX
+	 }
+	  //...Edit......
+	 function edit(element)
+	 {
+		var text = $(element).text();
+		if(text == "حفظ")
+		{
+            
+            var name = $.trim($('input[name=name3]').val());
+            var phone = $.trim($('input[name=phone3]').val());
+            
+            if( name =="" || phone=="")
+             {
+	           message("الرجاء تعبئة جميع الخانات"); return;
+             }
+        
+            if(phone.length < 9){message("الرجاء إدخال رقم جوال صحيح"); return;}
+          
+			
+				// ...... AJAX ....... //
+		$.ajax({
+		type:'POST', 
+		url: 'http://carent.co.nf/edit.php',
+		Type:'json',
+		data: {  id:storage.getItem("id")  , name:name , phone:phone },  
+       
+		success: function(response){
+			if(response.msg == 'yes'){
+			
+			
+					$(element).html('<ons-icon icon="md-edit"></ons-icon>');
+			        $("#account").find(".text-input--material").prop('disabled', true);
+				    storage.setItem("name", name);
+				    storage.setItem("phone", phone);
+				
+
+		}
+		else
+		{
+			message(" عذرا لم يتم التحديث!!");
+		}
+			
+
+		
+		} //End success function
+		
+		 , error: function(errors) {
+		message("عذرا حصل خطأ, الرجاء التأكد من اتصالك بالانترنت");
+
+		}
+		}); //End AJAX
+			
+			
+			
+
+		}
+		else
+		{
+			$(element).text("حفظ");
+			$("#account").find(".text-input--material").prop('disabled', false);
+		}
+		
+	}
+	 
+	 
+	 function send( phone)
+	 {
+		// alert(phone);
+		  window.open('https://api.whatsapp.com/send?phone=966'+phone+'&text='+"بخصوص إعلانك في منفعه: ", '_system', 'location=no');
+	 }
+	 ///.........................................ADD.......................................//
+function step1()
+{
+if($.trim($('input[name=title]').val()) == "")
+	   {
+	   message("يجب ادخال عنوان لاعلانك!..");return;
+	   }
+if(!imgbool)
+{
+	message("يجب اختيار صورة على الأقل"); return;
+}
+if(!imageuploadbool)
+{
+   message("الرجاء الانتظار حتى يتم تحميل الصورة"); return;
+}
+
+ document.querySelector('#myNavigator').pushPage('add2.html'); 
+
+}//step 1 ....
+function step2()
+{
+		 var today = new Date();
+         var dd = today.getDate();
+         var mm = today.getMonth()+1; //January is 0!
+         var yyyy = today.getFullYear();
+
+          if(dd<10) {
+           dd = '0'+dd
+                 }              
+
+           if(mm<10) {
+            mm = '0'+mm
+                 } 
+
+         today = yyyy + '/' + mm + '/' + dd;
+		 var display =$('input[name=display]:checked').val();//undefiend or yes
+		 var title = $.trim($('input[name=title]').val());
+		 var detail = $.trim($('#detail').val());
+		 var city = $.trim($('input[name=city]').val());
+		 if(city == "")
+			 {message("الرجاء إدخال المدينة !"); return}
+		 
+		$.ajax({
+   url: 'http://carent.co.nf/add.php',
+   data: {
+      img:image, date:today, city:city, title: title, detail:detail, display:display, id: storage.getItem("id")
+   },
+   type: 'POST',
+   Type: 'json',
+   success: function(response) {
+    //success
+	  
+	   	if(response.msg == 'yes')
+			{
+			message("تم اضافة اعلانك بنجاح");
+			document.querySelector('#myNavigator').resetToPage( 'page1.html', {'title': ''}, 'slide-ios') ;
+			}
+		else
+		   {
+			   message("عذرا حصل خطأ, الرجاء التأكد من البيانات المدخلة");
+		   }
+	  
+   },
+			 error: function() {
+   message("عذرا حصل خطأ, الرجاء التأكد من اتصالك بالانترنت");
+
+   }
+   
+});
+		 
+	 }
+function uploadimage(element)
+{
+
+ navigator.camera.getPicture(function (imageURI ) {
+	 if(element !='flag')
+	 imageuploadbool=false;
+success(imageURI ,element);  }
+ ,  function(message) {
+message("لم يتم تحميل الصورة");
+
+ },
+ {
+ quality: 100,
+ destinationType: navigator.camera.DestinationType.FILE_URI,
+ allowEdit: true,
+ sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+ });
+
+ }//get photo)()	 
+function success(imageURI ,element)
+{
+ var options = new FileUploadOptions();
+ options.fileKey = "file";
+ options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+
+ options.mimeType = "image/jpg";
+ console.log(options.fileName);
+ var params = new Object();
+ params.value1 = "test";
+ params.value2 = "param";
+ options.params = params;
+ options.chunkedMode = false;
+
+var ft = new FileTransfer();
+	
+	$(element).html('<ons-icon icon="ion-ios-loop-strong" spin size="40px"></ons-icon>' );
+    imgbool = true;	
+	
+	
+
+ ft.upload(imageURI, "http://carent.co.nf/upload.php", function(result){
+	
+		 imageuploadbool = true;
+         $(element).html( '<span></span>' );
+         $(element).css("background-image", "url("+imageURI+ '?' + Math.random()+")");
+		
+	
+
+         image= result.response.toString(); //get response
+	
+
+
+
+ }, function(error){
+$(element).html( '<ons-icon icon="ion-sad" class="font1" size="40px"></ons-icon>' );
+message("نأسف حدث خطأ نرجو المحاولة من جديد");
+ }, options);
+}//success	 
+	 
+	
+function getAds()
+{
+			$.ajax({
+            url: "http://carent.co.nf/cars.php",
+            type: "GET",
+ //   contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+		var cars = $("#ads-list");
+		global = response;
+			
+		//page.querySelector("#cars-loading").remove();
+        if(response.length === 0)
+			$(cars).html("<br><div class='center sukar '>لا يوجد اعلانات حاليا</div>");
+		else{
+			cars.html('');
+			length = response.length;
+			for(i =0 ; i< length ; i++)
+					{
+			var str = '<ons-list-item onclick="document.querySelector(\'#myNavigator\').pushPage(\'ads.html\', {data: {title: \''+i+'\'}}); " tappable> '+
+            '<ons-row>'+
+            '<ons-col class="right-align sukar size2" >'+
+			'<i class=" ">' +'</i>&nbsp;<b> '+
+        	   response[i].title+'</b>'+
+			
+			'</ons-col>'+
+	        '</ons-row><br><br>'+
+	        '<ons-row class="cardstyle sukar ">'+
+            '<ons-col class="right-align">'+
+			'<span><i class="ion-ios-location"></i>  '+response[i].city +' </span>'+
+			
+			'</ons-col>'+
+			
+			'<ons-col class="right-align">'+
+			'<span><i class="ion-ios-calendar-outline "></i> ';
+				
+						str += response[i].date +' </span></ons-col></ons-row>';
+			
+				
+			str+= ' '+
+	        '<ons-row>'+
+            ' <ons-col class="right-align greanblue size1 sukar">'+
+			'<span>مزيد من التفاصيل</span>'+
+			'</ons-col>'+
+	        ' </ons-row>'+
+       
+    
+            '<div class="right"> <img class="list-item__thumbnail thumbnail" '+ ' src="http://carent.co.nf/img.php?img='+response[i].img +'">' +
+									'</div>'+
+									
+   ' </ons-list-item>';
+			$(cars).append(str);
+				}
+		
+		  }	//else    
+
+        },error: function () {
+		//	page.querySelector("#cars-loading").remove();
+         	message("عذرا حصل خطأ, الرجاء التأكد من اتصالك بالانترنت");
+
+           }
+       });
+
+		                                                    
+		
+	}
+	 
+	 
+	 
+	 
+function deladd(element)
+{
+		$(element).css('color', 'red');
+		
+		 ons.notification.confirm({
+		 title:'<ons-icon icon="ion-alert-circled"size="30px"></ons-icon>',
+         message: '<span style="text-align: right"class="sukar">هل بالفعل تريد حذف هذا الاعلان؟<span>',
+		 buttonLabels: ['<span class="sukar center">نعم<span>', '<span class="sukar center">الغاء<span>'],
+         callback: function(answer) {
+          if(answer == 1)
+		  { 
+           	  $(element).css('color', 'black');
+			 // alert(EnglishCo.sort());
+		  }
+		  else
+			  { 
+		$.ajax({
+		type:'POST', 
+		url: 'http://carent.co.nf/deladd.php',
+		data: { aid: storage.getItem("id") , id: $(element).attr('id')}, 
+		success: function(response){
+		id = $(element).attr('id');
+			   $("#car1"+id).remove();
+			   $("#car2"+id).remove();
+
+		} //End success function
+		
+		 , error: function(errors) {
+		message("عذرا حصل خطأ, الرجاء التأكد من اتصالك بالانترنت");
+
+		}
+		}); //End AJAX  
+		}//else
+    }
+  });
+	}	 
+	  
+function register()
+{
+		var name = $.trim($('input[name=name1]').val());
+		var phone = $.trim($('input[name=phone1]').val());
+		var password = $.trim($('input[name=password1]').val());
+			
+		if(name == "" ){message("الرجاء إدخال اسم"); return;}
+		if(phone ==""){message("الرجاء إدخال رقم الجوال");return;}
+		if(phone.length < 9){message("الرجاء إدخال رقم جوال صحيح"); return;}
+		if(password == "" ){ message("الرجاء إدخال كلمة مرور"); return;}
+		
+		 ///good...........register........
+		
+		 $.ajax({
+		type: 'POST', 
+		url: 'http://carent.co.nf/register.php',
+		Type: 'json',
+	
+		 	data: {name : name , phone: phone, password:password 
+				   }, 
+		    beforeSend: function() {
+            $("#load2").attr("style", "display:block");
+	
+                },
+        complete: function(){
+                  $("#load2").attr("style", "display:none");
+                },
+		success: function(response){
+	 
+		if(response.msg == 'yes'){
+	
+			$('#dialog-2').hide();
+			$('#page1').append("<div class='toast bk' id='toast1'>  <div class='toast__message sukar c center'>"+
+										 "  تم تسجيلك بنجاح .. </div> </div>")	
+
+        setTimeout("$('#toast1').remove(); document.querySelector('#myNavigator').resetToPage( 'page1.html', {'title': ''}, 'slide-ios') ;", 800);
+        storage.setItem('name',response.name);
+        storage.setItem('phone',response.phone);		
+		storage.setItem('id',response.id);
+		
+	
+			
+		//myNav.resetToPage( 'index.html', {'title': ''}, 'slide-ios') ;
+		}
+		else
+	   message("لم يتم تسجيلك بنجاح, الرجاء استخدام رقم هاتف آخر..");
+
+		
+		} //End success function
+		
+		 , error: function(errors) {
+		message("عذرا حصل خطأ, الرجاء التأكد من اتصالك بالانترنت");
+		}
+		}); //End AJAX
+	 }
+function message(str)
+{
+	ons.notification.alert({'title': '<center><span class="sukar c " >تنبيه</span><center>' , 'messageHTML' : 
+							'<p style="	text-align: right" class="sukar " >'+str+'</p>' , 'buttonLabels': '<span class="sukar center">موافق<span>'});	
+}
+
+	 
+	 
+document.addEventListener('init', function(event) {
+  var page = event.target;
+
+  if (page.matches("#page1"))
+  {
+	   if(storage.getItem('id') != null)
+	$('#tool').append('<button id="logout" onClick="logout()" class="fab fab--material bk2 "><i class="zmdi zmdi-sign-in white"></i></button>');
+	  //////////////////////////
+	 var pullHook = document.getElementById('pull-hook');
+         getAds();
+	
+            pullHook.addEventListener('changestate', function(event) {
+             var message = '';
+
+             switch (event.state) {
+             case 'initial':
+             message = '<ons-icon size="30px"  icon="ion-arrow-down-b"></ons-icon>';
+             break;
+             case 'preaction':
+             message = '<ons-icon size="30px"  icon="ion-arrow-up-b"></ons-icon>';
+             break;
+             case 'action':
+             message = '<ons-icon size="30px" spin icon="ion-load-d"></ons-icon>';
+		     break;
+    }
+
+    pullHook.innerHTML = message;
+  });
+
+            pullHook.onAction = function(done) {
+	  
+    setTimeout(done, 1000);
+	getAds();
+  };
+			
+		 
+
+			 
+			 
+			 
+			 
+   
+  }
+	else if(page.matches("#account") )
+		{
+			$('input[name=name3]').val(storage.getItem("name"));
+			$('input[name=phone3]').val(storage.getItem("phone"));
+			//////////////////////////////////////////////////////
+			$.ajax({
+            url: "http://carent.co.nf/myads.php?id="+storage.getItem('id'),
+           type: "POST",
+           dataType: "json",
+        success: function (response) {
+		var cars = page.querySelector("#car-list");
+		
+        if(response.length === 0)
+			$("<br><div class='center sukar greanblue'>لا يوجد لديك اعلانات .</div>").insertAfter(cars);
+		else{
+			length = response.length;
+			for(i =0 ; i< length ; i++)
+				{
+					 $(cars).append('<ons-list-item id="car1'+ response[i].id+'" tappable class="accordion" onclick="fn.toggle(this)" >'+
+					   '<div class="center sukar">'+
+					   response[i].title+
+					  '</div><div class="right" id="'+ response[i].id+'" onclick="deladd(this)">'+
+					   '<ons-icon icon="ion-trash-a" class="list-item__icon"></ons-icon>'+
+					   '</div></ons-list-item>'+
+					   '<div  id="car2'+ response[i].id+'" style="text-align:right" class="panel sukar"><br>'+
+					  					
+					
+						 '<ons-row>'+
+					   '<ons-col width="50px"></ons-col>'+
+                       '<ons-col width="200px"><b>تم اضافته بتاريخ: </b></ons-col>'+
+                       '<ons-col>'+response[i].date+'</ons-col>'+
+                       '</ons-row>'+
+									
+									
+					   '<br><ons-row>'+
+					   '<ons-col width="50px"></ons-col>'+
+                       '<ons-col width="200px"><b>التفاصيل: </b> </ons-col>'+
+                       '<ons-col class="justify">'+response[i].detail+'</ons-col><ons-col width="20px"></ons-col>'+
+                       '</ons-row><br><br>'+
+						
+					   '</div>');
+				}
+		
+		  }	//else    
+
+        },error: function () {
+			message("عذرا حصل خطأ, الرجاء التأكد من اتصالك بالانترنت");
+
+           }
+       });//ajax
+			
+		}
+	else if(page.matches("#ads"))
+		{
+			var i = page.data.title;
+			//image
+			$("#cont").append('<center><img  alt="" width="100%" height="40%"  src='+ "http://carent.co.nf/img.php?img="+global[i].img +'></center><br><br>');
+			//person info
+			title = global[i].title+"";
+			$.ajax({
+		type:'POST', 
+		url: 'http://carent.co.nf/info.php',
+		data: { id: global[i].aid}, 
+		success: function(response){
+	
+			$("#cont").append( '<span class="sukar"><i style="font-size: 28px; color:#4E1674" class="ion-person "></i>  '+response.name +' </span><br><br>');
+			if(global[i].display == "yes")
+				{
+					phone = response.phone;
+					
+					$("#cont").append( '<span class="sukar"><i style="font-size: 28px; color:#4E1674" class="ion-ios-telephone "></i>  '+phone +' </span><br><br>');
+					////////////////////////////////////////
+				
+					$("#fab").attr("onclick","send(phone)");
+				}
+			else
+				$("#fab").remove();
+			
+			//rest info
+			$("#cont").append( '<span class="sukar"><i style="font-size: 28px; color:#4E1674" class="ion-ios-location "></i>  '+global[i].city +' </span><br><br>');
+			$("#cont").append( '<span class="sukar"><b style="font-size:; color:#4E1674"  >أُضيف بتاريخ: </b>  '+global[i].date +' </span><br><br>');
+			$("#cont").append( '<span class="sukar justify"><b style="font-size:; color:#4E1674"  >التفاصيل:  </b> <br> '+global[i].detail +' </span><br><br>');
+
+		} //End success function
+		
+		 , error: function(errors) {
+		message("عذرا حصل خطأ, الرجاء التأكد من اتصالك بالانترنت");
+
+		}
+		}); //End AJAX  
+			
+			
+		}
+	
+});
+</script>
+ 
+
+
+
+
+  
+  
+  
+   </body>
+</html>

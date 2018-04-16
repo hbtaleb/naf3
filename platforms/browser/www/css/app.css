@@ -1,0 +1,190 @@
+.font1{
+	font-family: first;	
+}
+.font2
+{font-family: second;
+}
+.font3
+{
+	 font-family: third;
+}
+
+
+.black{
+	color:black
+}
+.red{
+	color:red;
+}
+.greanblue{
+	color: #85adad
+}
+.green{
+	color:#00bdb5
+}
+.white{
+	color: white;
+}
+.materialcolor{
+	background-color:#00bdb5
+}
+.b-red
+{
+	background-color:Tomato
+}
+.tab-bar :active
+{
+	color:white
+}
+
+
+.menuBtn
+{
+	background-color:#00bdb5  ;
+    border-radius: 20px;
+    width:120px; 
+    height:120px;
+    vertical-align: middle;
+    text-align: center;
+	display:table-cell;	
+}
+#upprofile-page .page__background{
+	background-color: black;
+}
+.b-white{
+	background-color: white;
+}
+.b-card{
+		  background-color:#F8F9F9  ;
+}
+.gray{
+	color:#1f1f1f 
+}
+.bar{
+	background-color: #1f1f1f 
+}
+.orange{
+	color:#E56C13
+}
+.btna:active {
+background-color: #1f1f1f ;
+ color: white !important; 
+}
+
+
+.menulistcolor
+{
+	background-color: #707B7C 
+}
+.right-align
+{
+	text-align:right
+}
+.center-align
+{
+	text-align:center
+}
+.size1{
+	font-size: 9px;
+}
+.size2{
+	font-size: 17px;
+}
+.thumbnail {
+  width: 120px;
+  height: 80px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+.location {
+  font-size: 14px;
+  opacity: 0.4;
+  margin-bottom: 6px;
+}
+
+
+
+.cover-label {
+	
+  text-align: center;
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  bottom: 10px;
+  
+  
+}
+.img-color{
+	color: #85adad
+}
+#account-page #ads-page .page__background
+{
+	background-color: #f2f2f2
+	
+}
+#slidemenu-page .page__background
+{
+	background-color: #707B7C  ;
+}
+p ons-input {
+ font-family: first !important;
+}
+
+
+.center{
+	text-align:center;
+}
+.direction{
+	 text-align: right;
+}
+
+.padding1{
+	padding:30px;
+}
+.rad-img{
+border-radius: 500px;
+width: 100px; 
+height: 100px;	
+}
+
+
+.modal{
+	background-color:transparent;
+}
+
+
+.accordion {
+    transition: 0.2s;
+}
+
+
+.accordion:before {
+    margin-top: -3px;
+	font-size: 40px;
+	color:#00bdb5;
+	font-family: "Material Icons";
+    content: "\e147";
+
+}
+
+.accordion.active:before {
+     font-family: "Material Icons";
+     content: '\e15c';
+}
+
+div.panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+    opacity: 0;
+}
+
+div.panel.show {
+    opacity: 1;
+    max-height: 500px;
+}
+
+.list__item__center {
+    padding-left: 5px;
+}

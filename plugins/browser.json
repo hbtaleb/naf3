@@ -1,0 +1,88 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "com.synconset.imagepicker": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-battery-status": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-console": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-device-motion": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-device-orientation": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-globalization": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-image-picker": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-ios-camera-permissions": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-media": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-media-capture": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-nativestorage": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova.plugins.diagnostic": {
+      "PACKAGE_NAME": "com.carent.cars"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "com.carent.cars"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.carent.cars"
+    }
+  }
+}
