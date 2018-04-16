@@ -156,7 +156,29 @@ div.panel.show {
 </ons-dialog>
 
 
+<template id="add.html">
+  <ons-page id="add">
+    <ons-toolbar style="background-color:#D5DF73" >
+       <div class="left sukar"><ons-back-button >رجوع</ons-back-button></div>
+      <div class="center sukar">اضافة اعلان</div>
+    </ons-toolbar>
 
+	   <ons-bottom-toolbar transparent>
+      <button style="height: 100%; width:100%" class="toolbar-button  sukar c bk" onclick="step1()"> 
+		   التالي    </button>
+   </ons-bottom-toolbar>
+	  
+	  	  <div dir="rtl" style="text-align: center; margin-top: 30px;">
+			
+		 <br>  <input name="title" style="width:90%" class="text-input text-input--material sukar  " type="text" placeholder="عنوان الاعلان"><br><br><br><br>
+	  
+					  
+			  <button onClick="uploadimage(this)" id="1" style="background-color: #DCDCDC;  width:90%; height:200px;background-size: 230px 200px; background-repeat: no-repeat;" class="button--cta"><span class="ion-plus-round sukar main">اضف صورة</span></button><br><br>
+			  
+	 </div>
+    
+  </ons-page>
+</template>
 
 				
 				
