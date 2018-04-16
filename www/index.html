@@ -503,7 +503,7 @@ function step2()
 	  
 	   	if(response.msg == 'yes')
 			{
-			message("تم اضافة اعلانك بنجاح");
+			message("تم اضافة إعلانك بنجاح");
 			document.querySelector('#myNavigator').resetToPage( 'page1.html', {'title': ''}, 'slide-ios') ;
 			}
 		else
@@ -593,7 +593,7 @@ function getAds()
 			
 		//page.querySelector("#cars-loading").remove();
         if(response.length === 0)
-			$(cars).html("<br><div class='center sukar '>لا يوجد اعلانات حاليا</div>");
+			$(cars).html("<br><div class='center sukar '>لا يوجد إعلانات حاليا</div>");
 		else{
 			cars.html('');
 			length = response.length;
@@ -806,7 +806,7 @@ document.addEventListener('init', function(event) {
 		var cars = page.querySelector("#car-list");
 		
         if(response.length === 0)
-			$("<br><div class='center sukar greanblue'>لا يوجد لديك اعلانات .</div>").insertAfter(cars);
+			$("<br><div class='center sukar greanblue'>لا يوجد لديك إعلانات .</div>").insertAfter(cars);
 		else{
 			length = response.length;
 			for(i =0 ; i< length ; i++)
@@ -822,7 +822,7 @@ document.addEventListener('init', function(event) {
 					
 						 '<ons-row>'+
 					   '<ons-col width="50px"></ons-col>'+
-                       '<ons-col width="200px"><b>تم اضافته بتاريخ: </b></ons-col>'+
+                       '<ons-col width="200px"><b>تم إضافته بتاريخ: </b></ons-col>'+
                        '<ons-col>'+response[i].date+'</ons-col>'+
                        '</ons-row>'+
 									
